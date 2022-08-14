@@ -71505,7 +71505,7 @@
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "wbf" = (
-/obj/effect/spawner/random/structure/closet_maintenance,
+/obj/structure/closet/decay,
 /turf/open/floor/plating,
 /area/station/maintenance/aft/lesser)
 "wbk" = (

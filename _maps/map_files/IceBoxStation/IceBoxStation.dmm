@@ -19,7 +19,7 @@
 /obj/structure/table,
 /obj/item/folder/red,
 /obj/item/taperecorder,
-/turf/open/floor/iron/dark,
+/turf/open/floor/carpet/red,
 /area/station/security/interrogation)
 "aaD" = (
 /obj/structure/sign/warning,

@@ -23,7 +23,7 @@
 /area/station/security/interrogation)
 "aaD" = (
 /obj/structure/sign/warning,
-/turf/closed/wall/r_wall,
+/turf/open/floor/carpet/red
 /area/mine/storage)
 "aaI" = (
 /obj/structure/closet/wardrobe/white,

@@ -19,11 +19,11 @@
 /obj/structure/table,
 /obj/item/folder/red,
 /obj/item/taperecorder,
-/turf/open/floor/iron/dark,
+/turf/open/floor/carpet/red,
 /area/station/security/interrogation)
 "aaD" = (
 /obj/structure/sign/warning,
-/turf/closed/wall/r_wall,
+/turf/open/floor/carpet/red
 /area/mine/storage)
 "aaI" = (
 /obj/structure/closet/wardrobe/white,
@@ -71592,7 +71592,7 @@
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "wbf" = (
-/obj/effect/spawner/random/structure/closet_maintenance,
+/obj/structure/closet/decay,
 /turf/open/floor/plating,
 /area/station/maintenance/aft/lesser)
 "wbk" = (

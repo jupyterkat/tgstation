@@ -5,7 +5,7 @@
 #define ID_ICON_BORDERS 1, 9, 32, 24
 
 /// Fallback time if none of the config entries are set for USE_LOW_LIVING_HOUR_INTERN
-#define INTERN_THRESHOLD_FALLBACK_TIME (15 HOURS)
+#define INTERN_THRESHOLD_FALLBACK_HOURS 15
 
 /// Max time interval between projecting holopays
 #define HOLOPAY_PROJECTION_INTERVAL 7 SECONDS
@@ -438,6 +438,7 @@
 
 	context[SCREENTIP_CONTEXT_LMB] = "Show ID"
 	context[SCREENTIP_CONTEXT_RMB] = "Project pay stand"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "Withdraw credits"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/card/id/proc/try_project_paystand(mob/user, turf/target)
@@ -580,7 +581,7 @@
 	if(!cash_money)
 		to_chat(user, span_warning("[money] doesn't seem to be worth anything!"))
 		return
-	registered_account.adjust_money(cash_money)
+	registered_account.adjust_money(cash_money, "System: Deposit")
 	SSblackbox.record_feedback("amount", "credits_inserted", cash_money)
 	log_econ("[cash_money] credits were inserted into [src] owned by [src.registered_name]")
 	if(physical_currency)
@@ -612,7 +613,7 @@
 		total += physical_money.get_item_credit_value()
 		CHECK_TICK
 
-	registered_account.adjust_money(total)
+	registered_account.adjust_money(total, "System: Deposit")
 	SSblackbox.record_feedback("amount", "credits_inserted", total)
 	log_econ("[total] credits were inserted into [src] owned by [src.registered_name]")
 	QDEL_LIST(money)
@@ -623,7 +624,7 @@
 /obj/item/card/id/proc/alt_click_can_use_id(mob/living/user)
 	if(!isliving(user))
 		return
-	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(!user.canUseTopic(src, be_close = TRUE, no_dexterity = FALSE, no_tk = TRUE))
 		return
 
 	return TRUE
@@ -670,7 +671,7 @@
 		return
 	if(!alt_click_can_use_id(user))
 		return
-	if(registered_account.adjust_money(-amount_to_remove))
+	if(registered_account.adjust_money(-amount_to_remove, "System: Withdrawal"))
 		var/obj/item/holochip/holochip = new (user.drop_location(), amount_to_remove)
 		user.put_in_hands(holochip)
 		to_chat(user, span_notice("You withdraw [amount_to_remove] credits into a holochip."))
@@ -701,7 +702,7 @@
 			user.playsound_local(get_turf(src), slowbeat, 40, 0, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
 			if(isliving(user))
 				var/mob/living/living_user = user
-				living_user.adjust_timed_status_effect(10 SECONDS, /datum/status_effect/jitter)
+				living_user.adjust_jitter(10 SECONDS)
 			addtimer(CALLBACK(src, .proc/drop_card, user), 10 SECONDS)
 	. += span_notice("<i>There's more information below, you can look again to take a closer look...</i>")
 
@@ -923,7 +924,7 @@
 			balloon_alert(user, "recolored")
 		update_icon()
 
-/obj/item/card/id/advanced/proc/update_intern_status(datum/source, mob/user)
+/obj/item/card/id/advanced/proc/update_intern_status(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
 
 	if(!user?.client)
@@ -935,11 +936,10 @@
 	if(!SSdbcore.Connect())
 		return
 
-	var/intern_threshold = (CONFIG_GET(number/use_low_living_hour_intern_hours) * (1 HOURS)) || (CONFIG_GET(number/use_exp_restrictions_heads_hours) * (1 HOURS)) || INTERN_THRESHOLD_FALLBACK_TIME
-	var/playtime = user.client.get_exp_living(pure_numeric = TRUE) //Pure numeric, so any values returned by this proc will be in minutes (via the DB).
+	var/intern_threshold = (CONFIG_GET(number/use_low_living_hour_intern_hours) * 60) || (CONFIG_GET(number/use_exp_restrictions_heads_hours) * 60) || INTERN_THRESHOLD_FALLBACK_HOURS * 60
+	var/playtime = user.client.get_exp_living(pure_numeric = TRUE)
 
-	// The evaluation done here is done on the deciseconds level using the time defines.
-	if((intern_threshold >= (playtime MINUTES)) && (user.mind?.assigned_role.job_flags & JOB_CAN_BE_INTERN))
+	if((intern_threshold >= playtime) && (user.mind?.assigned_role.job_flags & JOB_CAN_BE_INTERN))
 		is_intern = TRUE
 		update_label()
 		return
@@ -1240,7 +1240,7 @@
 		to_chat(user, "Restating prisoner ID to default parameters.")
 		return
 	var/choice = tgui_input_number(user, "Sentence time in seconds", "Sentencing")
-	if(!choice || QDELETED(user) || QDELETED(src) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || loc != user)
+	if(!choice || QDELETED(user) || QDELETED(src) || !usr.canUseTopic(src, be_close = TRUE, no_dexterity = FALSE, no_tk = TRUE) || loc != user)
 		return FALSE
 	time_to_assign = choice
 	to_chat(user, "You set the sentence time to [time_to_assign] seconds.")
@@ -1566,7 +1566,7 @@
 					assignment = target_occupation
 
 				var/new_age = tgui_input_number(user, "Choose the ID's age", "Agent card age", AGE_MIN, AGE_MAX, AGE_MIN)
-				if(QDELETED(user) || QDELETED(src) || !user.canUseTopic(user, BE_CLOSE, NO_DEXTERITY, NO_TK))
+				if(QDELETED(user) || QDELETED(src) || !user.canUseTopic(user, be_close = TRUE, no_dexterity = TRUE, no_tk = TRUE))
 					return
 				if(new_age)
 					registered_age = new_age
@@ -1644,5 +1644,5 @@
 	desc = "A card used to identify members of the green team for CTF"
 	icon_state = "ctf_green"
 
-#undef INTERN_THRESHOLD_FALLBACK_TIME
+#undef INTERN_THRESHOLD_FALLBACK_HOURS
 #undef ID_ICON_BORDERS

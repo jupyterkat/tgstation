@@ -3974,11 +3974,11 @@
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "mO" = (
-/obj/machinery/power/shuttle_engine/huge,
+/obj/structure/shuttle/engine/huge,
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "mP" = (
-/obj/machinery/power/shuttle_engine/large,
+/obj/structure/shuttle/engine/large,
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "mY" = (

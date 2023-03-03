@@ -2033,7 +2033,7 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/shuttle/escape)
 "ek" = (
-/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -2043,11 +2043,11 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "em" = (
-/obj/machinery/power/shuttle_engine/propulsion,
+/obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "en" = (
-/obj/machinery/power/shuttle_engine/large,
+/obj/structure/shuttle/engine/large,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "eo" = (

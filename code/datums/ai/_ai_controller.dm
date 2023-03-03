@@ -106,10 +106,13 @@ multiple modular subtrees with behaviors
 	pawn = new_pawn
 	pawn.ai_controller = src
 
+	SEND_SIGNAL(src, COMSIG_AI_CONTROLLER_POSSESSED_PAWN)
+
 	if (!ismob(new_pawn))
 		set_ai_status(AI_STATUS_ON)
 	else
 		set_ai_status(get_setup_mob_ai_status(new_pawn))
+		RegisterSignal(pawn, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_changed))
 
 	RegisterSignal(pawn, COMSIG_MOB_LOGIN, PROC_REF(on_sentience_gained))
 
@@ -123,7 +126,6 @@ multiple modular subtrees with behaviors
 	if(ai_traits & CAN_ACT_WHILE_DEAD)
 		return final_status
 
-	RegisterSignal(pawn, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_changed))
 	if(mob_pawn.stat == DEAD)
 		final_status = AI_STATUS_OFF
 
@@ -300,7 +302,7 @@ multiple modular subtrees with behaviors
 /// Turn the controller on or off based on if you're alive, we only register to this if the flag is present so don't need to check again
 /datum/ai_controller/proc/on_stat_changed(mob/living/source, new_stat)
 	SIGNAL_HANDLER
-	var/new_ai_status = (new_stat == DEAD) ? AI_STATUS_OFF : AI_STATUS_ON
+	var/new_ai_status = get_setup_mob_ai_status(source)
 	set_ai_status(new_ai_status)
 
 /datum/ai_controller/proc/on_sentience_gained()
@@ -330,8 +332,3 @@ multiple modular subtrees with behaviors
 		if(iter_behavior.required_distance < minimum_distance)
 			minimum_distance = iter_behavior.required_distance
 	return minimum_distance
-
-/// If this controller is applied to a human subtype, this proc will be called to generate examine text
-/datum/ai_controller/proc/get_human_examine_text()
-	var/text = "[span_deadsay("[pawn.p_they(TRUE)] do[pawn.p_es()]n't appear to be [pawn.p_them()]self.")]"
-	return text

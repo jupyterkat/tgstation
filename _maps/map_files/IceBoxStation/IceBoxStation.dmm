@@ -2687,9 +2687,9 @@
 "aTJ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
 	id = "pharmacy_shutters";
-	name = "Pharmacy Shutters";
-	dir = 4
+	name = "Pharmacy Shutters"
 	},
 /turf/open/floor/plating,
 /area/station/medical/pharmacy)
@@ -7894,9 +7894,9 @@
 	},
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
 	id = "pharmacy_shutters";
-	name = "Pharmacy Shutters";
-	dir = 4
+	name = "Pharmacy Shutters"
 	},
 /turf/open/floor/iron,
 /area/station/medical/pharmacy)
@@ -39630,9 +39630,9 @@
 "mIt" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
+	dir = 1;
 	id = "pharmacy_shutters3";
-	name = "Pharmacy Shutters";
-	dir = 1
+	name = "Pharmacy Shutters"
 	},
 /turf/open/floor/plating,
 /area/station/medical/pharmacy)
@@ -46388,9 +46388,9 @@
 "oKb" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
+	dir = 1;
 	id = "pharmacy_shutters3";
-	name = "Pharmacy Shutters";
-	dir = 1
+	name = "Pharmacy Shutters"
 	},
 /turf/open/floor/plating,
 /area/station/service/kitchen)
@@ -48112,8 +48112,8 @@
 	},
 /obj/effect/landmark/event_spawn,
 /obj/machinery/door/window/brigdoor/left/directional/west{
-	req_access = list("morgue_secure");
-	name = "Coroner's Office"
+	name = "Coroner's Office";
+	req_access = list("morgue_secure")
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
@@ -59107,8 +59107,8 @@
 	req_access = list("hop")
 	},
 /obj/machinery/flasher/directional/south{
-	pixel_y = -23;
-	id = "hopflash"
+	id = "hopflash";
+	pixel_y = -23
 	},
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/hop)
@@ -60635,9 +60635,9 @@
 	},
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
 	id = "pharmacy_shutters2";
-	name = "Pharmacy Shutters";
-	dir = 4
+	name = "Pharmacy Shutters"
 	},
 /turf/open/floor/iron,
 /area/station/medical/pharmacy)
@@ -62928,6 +62928,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
+"ubw" = (
+/turf/open/space/basic,
+/area/icemoon/surface/outdoors/unexplored/rivers/no_monsters)
 "ubE" = (
 /obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer2{
 	dir = 1
@@ -207521,7 +207524,7 @@ wNO
 wNO
 wNO
 wNO
-wNO
+ubw
 "}
 (2,1,3) = {"
 wNO
@@ -272545,7 +272548,7 @@ wNO
 wNO
 "}
 (255,1,3) = {"
-wNO
+ubw
 wNO
 wNO
 wNO

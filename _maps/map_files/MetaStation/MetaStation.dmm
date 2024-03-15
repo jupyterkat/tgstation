@@ -45500,6 +45500,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/security/interrogation)
+"qoM" = (
+/turf/open/floor/engine/airless,
+/area/space)
 "qoR" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
@@ -68746,7 +68749,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+qoM
 "}
 (2,1,1) = {"
 aaa
@@ -133770,7 +133773,7 @@ aaa
 aaa
 "}
 (255,1,1) = {"
-aaa
+qoM
 aaa
 aaa
 aaa

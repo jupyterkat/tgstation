@@ -38520,6 +38520,9 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron,
 /area/station/tcommsat/computer)
+"mzZ" = (
+/turf/open/floor/engine/airless,
+/area/space)
 "mAb" = (
 /obj/effect/spawner/random/entertainment/arcade{
 	dir = 4
@@ -69694,6 +69697,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/security/prison/work)
+"xAW" = (
+/turf/open/floor/engine/airless,
+/area/station/asteroid)
 "xBc" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 10
@@ -71876,7 +71882,7 @@ vXM
 vXM
 vXM
 vXM
-vXM
+mzZ
 "}
 (2,1,1) = {"
 vXM
@@ -78290,7 +78296,7 @@ vXM
 vXM
 aaa
 aaa
-aaa
+vXM
 aaa
 aaa
 vXM
@@ -96957,11 +96963,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+xAW
+xAW
+xAW
+xAW
+vXM
 aaa
 aaa
 aaa
@@ -97214,11 +97220,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+xAW
+xAW
+xAW
+xAW
+xAW
 aaa
 aaa
 aaa
@@ -97471,11 +97477,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+xAW
+xAW
+xAW
+xAW
+xAW
 aaa
 aaa
 aaa
@@ -136900,7 +136906,7 @@ vXM
 vXM
 "}
 (255,1,1) = {"
-vXM
+mzZ
 vXM
 vXM
 vXM
